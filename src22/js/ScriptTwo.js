@@ -321,6 +321,22 @@ document.addEventListener("keydown", (function(e) {
   }))
 }));
 
+$(document).ready(function(){
+	$('form').submit(function(event){
+		event.preventDefault();
+
+		$.ajax({
+			type:"POST",
+			url:"php/send.php",
+			data:$(this).serialize()
+		}).done(function(){
+			$(this).find("input").val("");
+			alert("Отправлено!");
+			$("form").trigger("reset");
+		});
+		return false;
+	});
+});
 
 
 
